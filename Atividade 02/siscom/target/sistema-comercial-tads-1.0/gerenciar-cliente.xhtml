@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="template.xhtml"
+                xmlns:si="http://xmlns.jcp.org/jsf/composite/siscom-comp"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head></h:head><!-- Alguns problemas no layout do Primefaces -->
+    <h:form>
+        <p:fieldset legend="Dashboard">
+            <si:toolbar-crud crudBean="#{clienteBean}"/>
+
+            <!-- Mensagem em linha em baixo da toolbar -->
+            <p:messages autoUpdate="true" showDetail="true"></p:messages>
+
+            <!-- Mensagem flutuante no canto superior direito -->
+            <p:growl autoUpdate="true" showDetail="true"></p:growl>
+
+            <p:panelGrid columns="2" styleClass="ui-noborder" 
+                         rendered="#{clienteBean.statusTela != 'PESQUISANDO'}">
+
+                <p:outputLabel value="Nome"></p:outputLabel>
+                <p:inputText value="#{clienteBean.entity.nome}"></p:inputText>
+                <p:outputLabel value="Empresa"></p:outputLabel>
+                <p:inputText value="#{clienteBean.entity.apelido}"></p:inputText>
+                <p:outputLabel value="CPF"></p:outputLabel>
+                <p:inputText value="#{clienteBean.entity.cpf}"></p:inputText>
+                <p:outputLabel value="RG"></p:outputLabel>
+                <p:inputText value="#{clienteBean.entity.rg}"></p:inputText>
+                <p:outputLabel value="CNPJ"></p:outputLabel>
+                <p:inputText value="#{clienteBean.entity.cnpj}"></p:inputText>
+                <p:outputLabel value="Inscrição"></p:outputLabel>
+                <p:inputText value="#{clienteBean.entity.inscricao}"></p:inputText>
+                <p:outputLabel value="Telefone"></p:outputLabel>
+                <p:inputText value="#{clienteBean.entity.telefone1}"></p:inputText>
+                <p:outputLabel value="Telefone 02"></p:outputLabel>
+                <p:inputText value="#{clienteBean.entity.telefone2}"></p:inputText>
+                <p:outputLabel value="Telefone 03"></p:outputLabel>
+                <p:inputText value="#{clienteBean.entity.telefone3}"></p:inputText>
+                <p:outputLabel value="Email"></p:outputLabel>
+                <p:inputText value="#{clienteBean.entity.email}"></p:inputText>
+                <p:outputLabel value="Observação"></p:outputLabel>
+                <p:inputText value="#{clienteBean.entity.observacao}"></p:inputText>
+                
+            </p:panelGrid>
+
+            <p:dataTable value="#{clienteBean.entitys}" var="cli"
+                         rendered="#{clienteBean.statusTela == 'PESQUISANDO'}">
+
+                <p:column headerText="ID">
+                    <h:outputText value="#{cli.id}"></h:outputText>
+                </p:column>                    
+                <p:column headerText="Nome">
+                    <h:outputText value="#{cli.nome}"></h:outputText>
+                </p:column>
+                <p:column headerText="Empresa">
+                    <h:outputText value="#{cli.apelido}"></h:outputText>
+                </p:column>
+                <p:column headerText="CPF">
+                    <h:outputText value="#{cli.cpf}"></h:outputText>
+                </p:column>
+                <p:column headerText="RG">
+                    <h:outputText value="#{cli.rg}"></h:outputText>
+                </p:column>
+                <p:column headerText="CNPJ">
+                    <h:outputText value="#{cli.cnpj}"></h:outputText>
+                </p:column>
+                <p:column headerText="Inscrição">
+                    <h:outputText value="#{cli.inscricao}"></h:outputText>
+                </p:column>
+                <p:column headerText="Telefones">
+                    <h:outputText value="#{cli.telefone1; cli.telefone2; cli.telefone3}"></h:outputText>
+                </p:column>
+                <p:column headerText="Email">
+                    <h:outputText value="#{cli.apelido}"></h:outputText>
+                </p:column>
+                <p:column headerText="Observação">
+                    <h:outputText value="#{cli.apelido}"></h:outputText>
+                </p:column>
+                
+                <p:column width="100">
+                    <p:commandButton icon="fa fa-trash" update="@form"
+                                     actionListener="#{clienteBean.remover(cli)}">
+                        <p:confirm header="Confirmação" message="Tem certeza que deseja apagar para sempre?" icon="fa fa-exclamation-triangle" />
+                    </p:commandButton>
+
+                    <p:commandButton icon="fa fa-edit" update="@form"
+                                     actionListener="#{clienteBean.editar(cli)}"></p:commandButton>
+                </p:column>
+            </p:dataTable>
+            
+        </p:fieldset>
+    </h:form>
+</ui:composition>
+
