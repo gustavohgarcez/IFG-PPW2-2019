@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Sistema Comercial#{empty tituloPagina?'':' - '.concat(tituloPagina)}</title>
+        <meta name="viewport" content="width=device-width"></meta>
+        <h:outputStylesheet library="css" name="reset.css"></h:outputStylesheet>
+        
+        <h:outputStylesheet library="css" name="estilo.css"></h:outputStylesheet>
+        <!--Spinkit retirado de: https://tobiasahlin.com/spinkit/-->
+        <h:outputStylesheet library="css" name="spinkit.css"></h:outputStylesheet>
+
+        <h:outputScript library="js" name="primefaces-locales.js"></h:outputScript>
+    </h:head>
+    <h:body class="sidebar-active">
+        <f:view locale="pt_BR"></f:view>
+        <header>
+            <div>
+                <a href="#" class="menu-button-toggle">
+                    <i class="fa fa-navicon"></i>
+                </a>
+            </div>
+            <div>
+                <h:graphicImage class="logo" library="imagens" name="logo.png"></h:graphicImage>
+            </div>
+            <div class="extras">
+                <div class="extras-item">
+                    <a href="#"><i class="fa fa-bell"></i></a>
+                </div>
+            </div>
+        </header>
+
+        <nav class="sidebar sidebar-mob">
+            <div class="usuario">
+                <div class="foto">
+                    <img src="https://www.gravatar.com/avatar/382d79b61a34ba561e61ef85d8119d25?s=56&amp;d=mp"></img>
+                </div>
+                <div class="nome">
+                    João Pereira da Silva
+                </div>
+            </div>
+            <ul>
+                <li>
+                    <a href="index.xhtml" class="sidebar-item #{view.viewId.endsWith('index.xhtml')?'active':''}">
+                        <i class="fa fa-fw fa-dashboard"></i>Dashboard
+                    </a>
+                </li>
+                <li>
+                    <a href="gerenciar-produto.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-produto.xhtml')?'active':''}">
+                        <i class="fa fa-fw fa-cubes"></i>Gerenciar Produto
+                    </a>
+                </li>
+                <li>
+                    <a href="gerenciar-categoria.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-categoria.xhtml')?'active':''}">
+                        <i class="fa fa-fw fa-tags"></i>Gerenciar Categoria
+                    </a>
+                </li>
+                <li>
+                    <a href="gerenciar-usuario.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-usuario.xhtml')?'active':''}">
+                        <i class="fa fa-fw fa-users"></i>Gerenciar Usuarios
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-configuracao">
+                        <i class="fa fa-fw fa-gear"></i>Configurações<i class="fa fa-fw fa-angle-down"></i>
+                    </a>
+                    <ul class="submenu" id="submenu-configuracao">
+                        <li>
+                            <a href="gerenciar-permissao.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-usuario.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-list"></i>Gerenciar Permissões
+                            </a>
+                        </li>
+                        <li>
+                            <a href="configuracoes.xhtml" class="sidebar-item #{view.viewId.endsWith('configuracoes.xhtml')?'active':''}">
+                                <i class="fa fa-fw fa-sliders"></i>Gerais
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="sidebar-item submenu-toogle" submenu_target="submenu-configuracao1">
+                                <i class="fa fa-fw fa-gear"></i>Configurações<i class="fa fa-fw fa-angle-down"></i>
+                            </a>
+                            <ul class="submenu" id="submenu-configuracao1">
+                                <li>
+                                    <a href="gerenciar-permissao.xhtml" class="sidebar-item #{view.viewId.endsWith('gerenciar-usuario.xhtml')?'active':''}">
+                                        <i class="fa fa-fw fa-list"></i>Gerenciar Permissões
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="configuracoes.xhtml" class="sidebar-item #{view.viewId.endsWith('configuracoes.xhtml')?'active':''}">
+                                        <i class="fa fa-fw fa-sliders"></i>Geais
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </nav>
+
+        <main>
+            <!-- Mensagem em linha em baixo da toolbar -->
+            <p:messages autoUpdate="true" showDetail="true"></p:messages>
+
+            <!-- Mensagem flutuante no canto superior direito -->
+            <p:growl autoUpdate="true" showDetail="true"></p:growl>
+            <ui:insert></ui:insert>
+        </main>
+
+        <footer>
+            <div class="copyright">
+                Sicom - Sistema Comercial do TADS©
+            </div>
+        </footer>
+
+        <p:ajaxStatus onstart="PF('statusDialog').show()" onsuccess="PF('statusDialog').hide()" />
+
+        <p:dialog widgetVar="statusDialog" modal="false" draggable="false" closable="false" resizable="false" showHeader="false">
+            <div class="sk-fading-circle">
+                <div class="sk-circle1 sk-circle"></div>
+                <div class="sk-circle2 sk-circle"></div>
+                <div class="sk-circle3 sk-circle"></div>
+                <div class="sk-circle4 sk-circle"></div>
+                <div class="sk-circle5 sk-circle"></div>
+                <div class="sk-circle6 sk-circle"></div>
+                <div class="sk-circle7 sk-circle"></div>
+                <div class="sk-circle8 sk-circle"></div>
+                <div class="sk-circle9 sk-circle"></div>
+                <div class="sk-circle10 sk-circle"></div>
+                <div class="sk-circle11 sk-circle"></div>
+                <div class="sk-circle12 sk-circle"></div>
+            </div>
+            <div class="texto-processando">Processando...</div>
+        </p:dialog>
+
+        <!-- Componentes Extras -->
+        <h:form>
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-trash-o" />
+                <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-undo" />
+            </p:confirmDialog> 
+        </h:form>
+
+        <h:outputScript library="primefaces" name="jquery/jquery.js"></h:outputScript>
+        <h:outputScript library="js" name="geral.js"></h:outputScript>
+        <h:outputStylesheet library="css" name="ajustes.css"></h:outputStylesheet>
+    </h:body>
+</html>
+
